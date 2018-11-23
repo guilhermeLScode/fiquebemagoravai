@@ -21,10 +21,16 @@
                 <Label class="titulo" text="oi" dock="right" width="40" backgroundColor="#43b883"/>
             </StackLayout>
             <StackLayout class="conteudo" v-else-if="this.tela == 2" dock="right">
-                <Label class="titulo" text="hehe" dock="right" width="40" backgroundColor="#ffffff"/>
+                <Label class="titulo" text="eae" dock="right" width="40" backgroundColor="#ccffff"/>
+                <FlexboxLayout class="artigo" :key="artigo.id" v-for="artigo in artigosList" flexDirection="column">
+                    <Label class="artigo-titulo" flexGrow="1" :text="artigo.titulo"/>
+                    <TextView class="artigo-conteudo" flexGrow="5" v-model="artigo.descricao"/>
+                </FlexboxLayout>    
             </StackLayout>
             <StackLayout class="conteudo" v-else text="eae" dock="right">
                 <Label class="titulo" text="eae" dock="right" width="40" backgroundColor="#000000"/>
+                <StackLayout class="artigo" :key="habito.id" v-for="habito in artigosList">
+                </StackLayout>
             </StackLayout>
         </DockLayout>
     </Page> 
@@ -34,6 +40,21 @@
         name: 'Map',
         data() {
             return {
+                artigosList: [
+                {
+                    titulo: 'Puta merda quero dar o cu',
+                    descricao: 'daocu daocu daocu daocu'
+                            +'daocu daocu daocu daocu' 
+                            +'daocu daocu daocu daocu' 
+                            +'daocu daocu daocu daocu'
+                },
+                {
+                titulo: 'Puta merda quero dar o cu',
+                descricao: 'daocu daocu daocu daocu'
+                            +'daocu daocu daocu daocu' 
+                            +'daocu daocu daocu daocu' 
+                            +'daocu daocu daocu daocu'
+                }],
                 tela: 1
             }
         },
@@ -61,12 +82,23 @@
         background: #EFEFEF;
     }
 
+    .artigo{
+        height: auto;
+        margin-left: 50px;
+        margin-right: 50px;
+        box-shadow: 0 0 10px black;
+        background: #3CA7CC;
+        margin-top: 30px;
+
+    }
+
     .titulo{
+        margin-top: 30px;
         font-size: 16em;
-        color: #005876;
+        color: black;
         min-width: 50px;
         min-height: 50px;
-        background: black;
+        background: #3ca7cc;
         margin-left: 30px;
         text-decoration: underline;
     }
