@@ -1,9 +1,12 @@
 <template>
 </template>
 <script>
-export default {
-    name: 'Map'
-}
+
+    import Footer from './components/common/Footer'
+    import Header from './components/common/Header'
+    export default {
+        name: 'Map'
+    }
 </script>
 <style scoped>
 
