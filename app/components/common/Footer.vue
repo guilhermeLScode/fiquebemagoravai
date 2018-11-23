@@ -1,5 +1,8 @@
 <template>
     <Page>
+        <AbsoluteLayout>
+            <label text="oi rs"/>
+        </AbsoluteLayout>
     </Page>
 </template>
 <script>
@@ -14,8 +17,5 @@
 
 </script>
 <style scoped>
-    .footer{
-        background: black;
-        height: 200px;
-    }
+
 </style>
