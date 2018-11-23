@@ -2,8 +2,9 @@
     <Page>
         <DockLayout stretchLastChild='true'>
             <DockLayout stretchLastChild='true' class="header" dock="top">
-                <Image src="~/assets/images/Fundo.png" dock="top" class="fundo" stretch="fill"/>
-                <Label :text="msg" dock="left" class="titulo"/>
+                <Image v-if="this.tela == 1" src="~/assets/images/CentrosAjudaHeader.png" dock="top" class="fundo" stretch="fill"/>
+                <Image v-else-if="this.tela == 2" src="~/assets/images/PsicotropédiaHeader.png" dock="top" class="fundo" stretch="fill"/>
+                <Image v-else src="~/assets/images/HábitosHeader.png" dock="top" class="fundo" stretch="fill"/>
             </DockLayout>
             <DockLayout stretchLastChild='true' class="footer" dock="bottom">
                 <Image src="~/assets/images/footerBorda.png" dock='left' class="borda"/>
@@ -16,9 +17,15 @@
                     <Image @tap="view(3)" src="~/assets/images/Hábitos.png" class= "imagem"/>
                 </FlexboxLayout>
             </DockLayout>
-            <Label v-if="this.tela == 1" text="teste" dock="right" width="40" backgroundColor="#43b883"/>
-            <Label v-else-if="this.tela == 2" text="teste" dock="right" width="40" backgroundColor="#ffffff"/>
-            <Label v-else text="teste" dock="right" width="40" backgroundColor="#000000"/>
+            <StackLayout class="conteudo" v-if="this.tela == 1" dock="right">
+                <Label class="titulo" text="oi" dock="right" width="40" backgroundColor="#43b883"/>
+            </StackLayout>
+            <StackLayout class="conteudo" v-else-if="this.tela == 2" dock="right">
+                <Label class="titulo" text="hehe" dock="right" width="40" backgroundColor="#ffffff"/>
+            </StackLayout>
+            <StackLayout class="conteudo" v-else text="eae" dock="right">
+                <Label class="titulo" text="eae" dock="right" width="40" backgroundColor="#000000"/>
+            </StackLayout>
         </DockLayout>
     </Page> 
 </template> 
@@ -27,22 +34,12 @@
         name: 'Map',
         data() {
             return {
-                msg: 'Pontos de ajuda',
                 tela: 1
             }
         },
         methods: {
             view(i){
                 this.tela = i;
-                if(i == 1){
-                    this.msg = "Pontos de ajuda"
-                }
-                else if(i == 2){
-                    this.msg = "Psicotropédia"
-                }
-                else{
-                    this.msg = "Hábitos"
-                }
             }
         }
     }
@@ -65,8 +62,12 @@
     }
 
     .titulo{
-        font-size: 1.8em;
+        font-size: 16em;
         color: #005876;
+        min-width: 50px;
+        min-height: 50px;
+        background: black;
+        margin-left: 30px;
         text-decoration: underline;
     }
 
@@ -87,5 +88,10 @@
     .imagem{
         height: 103.125px;
         margin-top: 23.4385px;
+    }
+
+    .conteudo{
+        height: 100%;
+        width: 100%;
     }
 </style>
