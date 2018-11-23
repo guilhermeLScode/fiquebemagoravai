@@ -7,7 +7,7 @@
                  androidSelectedTabHighlightColor="#ffffff">
             <TabViewItem title="Tab 1">
                 <GridLayout columns="*" rows="*">
-                    <Label class="message" :text="msg" col="0" row="0"/>
+           
                 </GridLayout>
             </TabViewItem>
             <TabViewItem title="Tab 2">
@@ -25,12 +25,50 @@
 </template>
 
 <script>
+
   export default {
+    name: "App",
     data() {
       return {
-        msg: 'Hello World!'
+        latitude: '-29.8587727',
+        longitude: '-51.1599591,17'
       }
-    }
+    }, ,
+       methods: {
+            onMapReady(args) {
+                var geolocation = require("nativescript-geolocation");
+                geolocation.isEnabled().then(function (isEnabled) {
+                    if (!isEnabled) {
+                        geolocation.enableLocationRequest().then(function () {
+                            
+                        }, function (e) {
+                            console.log("Error: " + (e.message || e));
+                        });
+                    } else {
+                        let location = geolocation.getCurrentLocation({desiredAccuracy: 3, updateDistance: 10, maximumAge: 20000, timeout: 20000})
+                            .then(function(resp) {
+
+                            console.log("location");
+
+                                this.latitude = resp.latitude;
+                                this.longitude = resp.longitude;
+                                // args.map.addMarkers([
+                                //     {
+                                //         lat: resp.latitude,
+                                //         lng: resp.longitude,
+                                //         title: "Tracy, CA",
+                                //         subtitle: "Home of The Polyglot Developer!",
+                                //         onCalloutTap: () => {
+                                //             utils.openUrl("https://www.thepolyglotdeveloper.com");
+                                //         }
+                                //     }
+                                // ]);
+                            })
+                    }
+                }, function (e) {
+                    console.log("Error: " + (e.message || e));
+                });
+            }
   }
 </script>
 

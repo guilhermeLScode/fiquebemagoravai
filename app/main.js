@@ -1,5 +1,5 @@
 import Vue from 'nativescript-vue'
-import App from './components/App'
+import Map from './components/map/Map'
 import VueDevtools from 'nativescript-vue-devtools'
 
 if(TNS_ENV !== 'production') {
@@ -11,5 +11,5 @@ Vue.config.silent = (TNS_ENV === 'production')
 Vue.registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView)
 
 new Vue({
-  render: h => h('frame', [h(App)])
+  render: h => h('frame', [h(Map)])
 }).$start()
